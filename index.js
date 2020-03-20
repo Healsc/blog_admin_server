@@ -16,6 +16,7 @@ app.use(bodyParser());
 const Router = require('koa-router');
 let user = require('./controller/user.js');
 let about = require('./controller/about.js');
+let type = require('./controller/type.js');
 /* let article = require('./controller/article.js');
 let type = require('./controller/type.js')
 let product = require('./controller/product.js');
@@ -25,8 +26,9 @@ let works = require('./controller/works.js');
 let router = new Router();
 router.use('/user',user.routes());
 router.use('/about', about.routes());
+router.use('/type', type.routes());
 /* router.use('/article', article.routes());
-router.use('/type', type.routes())
+
 router.use('/product', product.routes());
 router.use('/works', works.routes());
  */
