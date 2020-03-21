@@ -2,23 +2,22 @@ const Router = require('koa-router');
 let router = new Router();
 const mongoose = require('mongoose');
 
-/* router.post('/registUser', async (ctx) => {
-    console.log('请求成功')
-    ctx.body="请求成功"
-}); */
 
-
-/* 获取首页推荐的几篇文章 */
 router.get('/getArticleList', async (ctx) => {
     const Article = mongoose.model('Article')
-    await Article.find().exec().then((res)=>{
+    await Article.find().sort({"createDate":-1}).exec().then((res)=>{
         ctx.body = res
     }).catch((err)=>{
         ctx.body = err
     })  
 });
-
-
+router.post('/delArticle',async ctx=>{
+    const Article = mongoose.model('Article');
+    let id = ctx.request.body.id
+    await Article.remove({_id:id}).exec().then(res=>{
+        ctx.body = res;
+    })
+})
 router.post('/addArticle', async (ctx) => {
     const Article = mongoose.model('Article');
     const article = new Article(ctx.request.body);
