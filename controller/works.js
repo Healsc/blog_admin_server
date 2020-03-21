@@ -55,4 +55,20 @@ router.post('/delWork',async ctx=>{
         ctx.body = res;
     })
 })
+router.post('/addWork', async (ctx) => {
+    const Works = mongoose.model('Works');
+    const works = new Works(ctx.request.body);
+    await works.save().then(() => {
+        ctx.body = {
+            code: 200,
+            message: '添加成功'
+        };
+    }).catch(err => {
+        ctx.body = {
+            code: 500,
+            message: err
+        };
+    })
+    
+});
 module.exports = router;

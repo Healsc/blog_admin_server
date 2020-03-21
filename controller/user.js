@@ -10,6 +10,7 @@ router.post('/loginUser',async(ctx)=>{
     await User.findOne({userName:userName}).exec().then(async (res)=>{
         if(res){
             if(password == res.password){
+                ctx.session.userInfo = res.userName;
                 ctx.body={
                     code:200,
                     message:"登录成功",

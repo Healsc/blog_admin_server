@@ -1,6 +1,11 @@
 const Koa = require('koa');
 const app = new Koa();
 
+const session = require('koa-session');
+app.keys = ['some secret hurr'];
+let config = require('./config.js')
+app.use(session(config,app))
+
 // 解决跨域问题
 const cors = require('koa2-cors');
 app.use(cors({
