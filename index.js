@@ -10,7 +10,7 @@ app.use(session(config,app))
 const cors = require('koa2-cors');
 app.use(cors({
     //origin: ['http://localhost:8080'],
-    origin: 'http://localhost:8080',
+    origin: 'http://localhost:8082',
     credentials: true
 }));
 
@@ -48,6 +48,6 @@ app.use(async (ctx) => {
     ctx.body = 'hello koa';
 })
 
-app.listen(3000, () => {
+app.listen(3002, () => {
     console.log('start blog_admin server');
 });
